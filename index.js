@@ -1,3 +1,4 @@
+// this is firctorial recursion
 const fictorial = (n) =>{
 
   if(n===1){
@@ -10,7 +11,7 @@ const fictorial = (n) =>{
 
 console.log(fictorial(5));
 
-// finding exponential value
+// finding exponential value recursion
 
 const exponential = (n) =>{
   let temp;
