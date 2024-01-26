@@ -9,7 +9,7 @@ const fictorial = (n) =>{
   return temp
 }
 
-console.log(fictorial(5));
+console.log("this is fictorial",fictorial(5));
 
 // finding exponential value recursion
 
@@ -25,4 +25,24 @@ const exponential = (n) =>{
   return temp
 }
 
-console.log(exponential(4))
+console.log("this is exponential",exponential(4))
+
+// fibonaci series
+
+const fibonacci = (n) =>{
+  console.log(n)
+  if(n===0){
+    return 0;
+  }
+  if(n===1){
+    return 1
+  }
+
+  
+  let first = fibonacci(n-1)
+  let second = fibonacci(n-2)
+
+  return first + second;
+}
+
+console.log("this is fibonacci",fibonacci(5))
