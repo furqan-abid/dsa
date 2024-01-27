@@ -46,3 +46,46 @@ const fibonacci = (n) =>{
 }
 
 console.log("this is fibonacci",fibonacci(5))
+
+
+// palindrom
+
+const palindromeHelper = (string,start,end) =>{
+  if(start >= end){
+    return true
+  }
+  if(string[start] !== string[end]){
+    return false
+  }
+  return palindromeHelper(string, start+1 , end -1 )
+}
+
+const palindrome = (string) =>{
+  let start = 0
+  let end = string.length - 1
+  return palindromeHelper(string,start,end)
+
+}
+console.log(palindrome("furqan"))
+
+// reverse and array
+
+const reverseArrayHelper = (arr,start,end)=>{
+
+  if(start >= end){
+    return arr
+  }
+  let temp = arr[start];
+  arr[start] = arr[end]
+  arr[end] = temp
+
+  return reverseArrayHelper(arr,start+1,end-1)
+}
+
+const reverseArray = (arr) =>{
+  let start = 0
+  let end = arr.length-1
+  return reverseArrayHelper(arr,start,end)
+}
+
+console.log(reverseArray([2,3,1,4,5,3]));
