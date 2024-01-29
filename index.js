@@ -137,3 +137,35 @@ subSets([1,2,3,4])
 
 console.log(mainArr);
 
+
+// finding the sum in subset of array 
+
+const sumFinderHelper = (arr,sum,tempSum,index) =>{
+console.log(arr,sum,tempSum,index)
+  if(index==arr.length){
+    return false
+  }
+  if(sum==tempSum){
+    return true
+  }
+
+
+  // take
+  let call1 = sumFinderHelper(arr,sum,tempSum+arr[index],index+1)
+
+  // no take
+
+  let call2 = sumFinderHelper(arr,sum,tempSum,index+1)
+
+  return call1 || call2
+}
+const sumFinder = (sum,arr) =>{
+console.log(sum,arr);
+
+return sumFinderHelper(arr,sum,0,0)
+}
+
+let sum = 9
+let arr = [1,2,3,3,1,5]
+
+console.log(sumFinder(sum,arr))
