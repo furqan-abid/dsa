@@ -89,3 +89,51 @@ const reverseArray = (arr) =>{
 }
 
 console.log(reverseArray([2,3,1,4,5,3]));
+
+// subsequences
+
+const subsequencesHelper = (string,newString,index)=>{
+  if(string.length == index){
+    console.log(newString)
+    return
+  }
+
+  // take
+  subsequencesHelper(string,newString+string[index],index+1)
+
+  // no take
+  subsequencesHelper(string,newString,index+1)
+}
+
+const subsequences = (string) =>{
+
+  subsequencesHelper(string,"",0)
+}
+
+console.log("subsequence",subsequences("abc"))
+
+// sub sets of array
+let mainArr = []
+const subSetHelper = (arr,newArr,index) =>{
+
+  if(arr.length == index){
+    mainArr.push(newArr.slice())
+    return 
+  }
+  newArr.push(arr[index])
+  subSetHelper(arr,newArr,index+1)
+
+  newArr.pop()
+  subSetHelper(arr,newArr,index+1)
+  return
+}
+
+const subSets = (arr) =>{
+
+  return subSetHelper(arr,[],0)
+}
+
+subSets([1,2,3,4])
+
+console.log(mainArr);
+
