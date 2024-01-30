@@ -168,4 +168,32 @@ return sumFinderHelper(arr,sum,0,0)
 let sum = 9
 let arr = [1,2,3,3,1,5]
 
+
 console.log(sumFinder(sum,arr))
+
+
+// permutations
+
+const swap = (nums,i,j) => {
+  let temp = nums[i];
+  nums[i]=nums[j];
+  nums[j]=temp;
+}
+const permutationsHelper = (nums,i) =>{
+  if(nums.length==i){
+    console.log("break")
+    return
+  }
+
+  for(let j=i;j<nums.length;j++){
+    swap(nums,i,j)
+    console.log("before",i,j,nums)
+    permutationsHelper(nums,i+1)
+    swap(nums,j,i);
+    console.log("after",i,j,nums)
+  }
+}
+const permutations = (nums) =>{
+permutationsHelper(nums,0)
+}
+permutations([1,2,3])
