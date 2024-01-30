@@ -197,3 +197,25 @@ const permutations = (nums) =>{
 permutationsHelper(nums,0)
 }
 permutations([1,2,3])
+
+// keypad
+
+let keys = ["","",'abc','def','ghi','jkl','mno','pqrs','tuv','wxyz']
+let ans = []
+
+const keypadHelper = (nums,n,temp,i)=>{
+  if(n===i){
+    ans.push(temp)
+    return
+  }
+
+  for(let j=0;j<nums.length;j++){
+    keypadHelper(nums,n,temp + keys[nums[i]][j],i+1)
+  }
+}
+const keypad = (nums,num) =>{
+  keypadHelper(nums,num,"",0)
+  return ans
+}
+
+console.log(keypad([2,3,4],3))
