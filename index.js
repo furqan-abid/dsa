@@ -222,9 +222,34 @@ console.log(keypad([2,3,4],3))
 
 
 // combination sum
+const combinationAns = []
+const combinationSumHelper = (arr,target,temp,currentSum,i)=>{
 
-const combinationSum = ( num) =>{
+  if(currentSum>target){
+    return
+  }
+  if(arr.length==i){
+    if(currentSum==target){
+      combinationAns.push([...temp]);
+    }
+    return
+  }
 
+  // take
+  currentSum+=arr[i]
+  temp.push(arr[i])
+  combinationSumHelper(arr,target,temp,currentSum,i)
+  currentSum-=arr[i]
+  temp.pop()
+
+
+  // no take 
+  combinationSumHelper(arr,target,temp,currentSum,i+1)
+}
+const combinationSum = (arr,target) =>{
+
+  combinationSumHelper(arr,target,[],0,0)
+  return combinationAns
 }
 
-combinationSum()
+console.log(combinationSum([2,3,6,7],7))
