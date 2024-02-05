@@ -38,7 +38,6 @@
 //     return 1
 //   }
 
-  
 //   let first = fibonacci(n-1)
 //   let second = fibonacci(n-2)
 
@@ -46,7 +45,6 @@
 // }
 
 // console.log("this is fibonacci",fibonacci(5))
-
 
 // // palindrom
 
@@ -118,7 +116,7 @@
 
 //   if(arr.length == index){
 //     mainArr.push(newArr.slice())
-//     return 
+//     return
 //   }
 //   newArr.push(arr[index])
 //   subSetHelper(arr,newArr,index+1)
@@ -137,8 +135,7 @@
 
 // console.log(mainArr);
 
-
-// // finding the sum in subset of array 
+// // finding the sum in subset of array
 
 // const sumFinderHelper = (arr,sum,tempSum,index) =>{
 // console.log(arr,sum,tempSum,index)
@@ -148,7 +145,6 @@
 //   if(sum==tempSum){
 //     return true
 //   }
-
 
 //   // take
 //   let call1 = sumFinderHelper(arr,sum,tempSum+arr[index],index+1)
@@ -168,9 +164,7 @@
 // let sum = 9
 // let arr = [1,2,3,3,1,5]
 
-
 // console.log(sumFinder(sum,arr))
-
 
 // // permutations
 
@@ -220,7 +214,6 @@
 
 // console.log(keypad([2,3,4],3))
 
-
 // // combination sum
 // const combinationAns = []
 // const combinationSumHelper = (arr,target,temp,currentSum,i)=>{
@@ -242,7 +235,6 @@
 //   currentSum-=arr[i]
 //   temp.pop()
 
-
 //   // no take just incrementing
 //   combinationSumHelper(arr,target,temp,currentSum,i+1)
 // }
@@ -254,120 +246,190 @@
 
 // console.log(combinationSum([2,3,6,7],7))
 
-
 // upper is commented
 
 // rate in maze problem
 
-let ans = []
+let ans = [];
 
-const isSafe = (x,y,maze,n)=>{
-  console.log(x,y,maze,n);
-  console.log(x>=0 && y>=0 && x<n && y<n && maze[x][y] === 1)
-  return x>=0 && y>=0 && x<n && y<n && maze[x][y] === 1
-}
-const rateInMazeHelper = (x,y,maze,temp,n) =>{
-
-  if(x==n-1 && y==n-1){
-    ans.push(temp)
+const isSafe = (x, y, maze, n) => {
+  console.log(x, y, maze, n);
+  console.log(x >= 0 && y >= 0 && x < n && y < n && maze[x][y] === 1);
+  return x >= 0 && y >= 0 && x < n && y < n && maze[x][y] === 1;
+};
+const rateInMazeHelper = (x, y, maze, temp, n) => {
+  if (x == n - 1 && y == n - 1) {
+    ans.push(temp);
     console.log("wokring");
-    return
+    return;
   }
   console.log("object");
 
-  maze[x][y] = 0
+  maze[x][y] = 0;
 
-  if(isSafe(x+1,y,maze,n)){
-    rateInMazeHelper(x+1,y,maze,temp+"D",n)
+  if (isSafe(x + 1, y, maze, n)) {
+    rateInMazeHelper(x + 1, y, maze, temp + "D", n);
   }
-  if(isSafe(x,y-1,maze,n)){
-    rateInMazeHelper(x,y-1,maze,temp+"L",n)
+  if (isSafe(x, y - 1, maze, n)) {
+    rateInMazeHelper(x, y - 1, maze, temp + "L", n);
   }
-  if(isSafe(x,y+1,maze,n)){
-    rateInMazeHelper(x,y+1,maze,temp+"R",n)
+  if (isSafe(x, y + 1, maze, n)) {
+    rateInMazeHelper(x, y + 1, maze, temp + "R", n);
   }
-  if(isSafe(x-1,y,maze,n)){
-    rateInMazeHelper(x-1,y,maze,temp+"U",n)
+  if (isSafe(x - 1, y, maze, n)) {
+    rateInMazeHelper(x - 1, y, maze, temp + "U", n);
   }
-  
-  maze[x][y]=1; // backtracking
-}
 
-const rateInMaze = (maze,n)=>{
+  maze[x][y] = 1; // backtracking
+};
 
-  rateInMazeHelper(0,0,maze,"",n)
+const rateInMaze = (maze, n) => {
+  rateInMazeHelper(0, 0, maze, "", n);
 
   return ans;
-}
+};
 
 let maze = [
-  [1,0,0,0],
-  [1,1,0,0],
-  [1,1,0,0],
-  [0,1,1,1]
-]
+  [1, 0, 0, 0],
+  [1, 1, 0, 0],
+  [1, 1, 0, 0],
+  [0, 1, 1, 1],
+];
 
 let n = maze.length;
 
 // console.log(rateInMaze(maze,n));
 
+// n queen problem
 
-// n queen problem 
-
-const isQueenSafe = (board,col,row,num) =>{
+const isQueenSafe = (board, col, row, num) => {
   // check left row
-  for(let i=0;i<row;i++){
-    if(board[col][i]){
-      return false
+  for (let i = 0; i < row; i++) {
+    if (board[col][i]) {
+      return false;
     }
   }
 
   // check left upper diaognal
-  for(i=row, j = col; i>=0 && j>=0;i--,j--){
-    if(board[j][i])
-    return false
+  for (i = row, j = col; i >= 0 && j >= 0; i--, j--) {
+    if (board[j][i]) return false;
   }
 
   // check left lower diaognal
-  for (i = row, j = col; j >= 0 && i < num; i++, j--){
-    if(board[i][j]){
+  for (i = row, j = col; j >= 0 && i < num; i++, j--) {
+    if (board[i][j]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+const nqueenHelper = (board, col, num) => {
+  if (col >= num) {
+    return true;
+  }
+
+  for (let i = 0; i < num; i++) {
+    if (isQueenSafe(board, i, col)) {
+      board[i][col] = 1;
+      if (nqueenHelper(board, col + 1, num)) return board;
+      board[i][col] = 0;
+    }
+  }
+  return false;
+};
+
+const nqueen = (board, num) => {
+  return nqueenHelper(board, 0, num);
+};
+
+let board = [
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+];
+
+let num = board.length;
+
+// console.log(nqueen(board,num));
+
+// sudoko problem
+
+const isSukodoSafe = (board,selected,row,col,num)=>{
+  console.log(row,col)
+  for(let i = 0;i<num;i++){
+    if(board[row][i] ===selected){
       return false
     }
   }
 
-  return true
-}
+  for(let j = 0;j<num;j++){
+    if(board[j][col]===selected){
+      return false
+    }
+  }
 
-const nqueenHelper = (board,col,num) =>{
-  if(col >= num){
+  let startRow = row - row % 3;
+  let startCol = col - col % 3;
+
+  for(let i = startRow;i<startRow+3;i++){
+    for(let j = startCol;j<startCol+3;j++){
+      if(board[i][j]===selected){
+        return false
+      }
+    }
+  }
+
+  return true
+
+}
+const sukodoHelper = (board,num,row,col) =>{
+
+  if(row===num){
     return true
   }
 
-  for(let i=0;i<num;i++){
-    if(isQueenSafe(board,i,col)){
-      board[i][col] = 1
-      if(nqueenHelper(board,col+1,num))
-      return board
-      board[i][col] = 0
+  if(col==num){
+    return sukodoHelper(board,num,row+1,0)
+  }
+
+  if (board[row][col] != 0){
+    return sukodoHelper(board, num,row, col + 1);
+  }
+
+  for(let i = 1;i<=num;i++){
+
+    if(isSukodoSafe(board,i,row,col,num)){
+      board[row][col]=i
+      if(sukodoHelper(board,num,row,col+1)){
+        return board
+      }
+      board[row][col]=0
     }
-    
   }
   return false
 }
 
-const nqueen = (board,num) => {
+const sukodo = (board,num) => {
 
-return  nqueenHelper(board,0,num)
+  return sukodoHelper(board,num,0,0)
 
-}
+};
 
-let board = [
-  [0,0,0,0],
-  [0,0,0,0],
-  [0,0,0,0],
-  [0,0,0,0],
-]
+let sukodoboard = [
+  [3, 0, 6, 5, 0, 8, 4, 0, 0],
+  [5, 2, 0, 0, 0, 0, 0, 0, 0],
+  [0, 8, 7, 0, 0, 0, 0, 3, 1],
+  [0, 0, 3, 0, 1, 0, 0, 8, 0],
+  [9, 0, 0, 8, 6, 3, 0, 0, 5],
+  [0, 5, 0, 0, 9, 0, 6, 0, 0],
+  [1, 3, 0, 0, 0, 0, 2, 5, 0],
+  [0, 0, 0, 0, 0, 0, 0, 7, 4],
+  [0, 0, 5, 2, 0, 6, 3, 0, 0],
+];
 
-let num = board.length
+let sukodoNum = sukodoboard.length
 
-console.log(nqueen(board,num));
+console.log(sukodo(sukodoboard,sukodoNum))
