@@ -309,4 +309,65 @@ let maze = [
 
 let n = maze.length;
 
-console.log(rateInMaze(maze,n));
+// console.log(rateInMaze(maze,n));
+
+
+// n queen problem 
+
+const isQueenSafe = (board,col,row,num) =>{
+  // check left row
+  for(let i=0;i<row;i++){
+    if(board[col][i]){
+      return false
+    }
+  }
+
+  // check left upper diaognal
+  for(i=row, j = col; i>=0 && j>=0;i--,j--){
+    if(board[j][i])
+    return false
+  }
+
+  // check left lower diaognal
+  for (i = row, j = col; j >= 0 && i < num; i++, j--){
+    if(board[i][j]){
+      return false
+    }
+  }
+
+  return true
+}
+
+const nqueenHelper = (board,col,num) =>{
+  if(col >= num){
+    return true
+  }
+
+  for(let i=0;i<num;i++){
+    if(isQueenSafe(board,i,col)){
+      board[i][col] = 1
+      if(nqueenHelper(board,col+1,num))
+      return board
+      board[i][col] = 0
+    }
+    
+  }
+  return false
+}
+
+const nqueen = (board,num) => {
+
+return  nqueenHelper(board,0,num)
+
+}
+
+let board = [
+  [0,0,0,0],
+  [0,0,0,0],
+  [0,0,0,0],
+  [0,0,0,0],
+]
+
+let num = board.length
+
+console.log(nqueen(board,num));
