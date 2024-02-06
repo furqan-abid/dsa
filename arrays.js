@@ -110,3 +110,39 @@ const sumPair = (arr,num) =>{
 }
 
 console.log(sumPair([1,2,3,4,5,6,7],8));
+
+// majority element in an array
+
+const majorityElement = (arr) =>{
+    let element = 0;
+    let count = 0
+
+    for(let i = 0;i<arr.length;i++){
+        if(count===0){
+            element = arr[i]
+        }
+        if(arr[i]===element){
+            count++
+        }
+        else{
+            count--
+        }
+    }
+
+    count=0
+
+    for(let i = 0; i<arr.length;i++){
+        if(element===arr[i]){
+            count++
+        }
+    }
+
+    if(count>Math.floor(arr.length/2)){
+        return {element,count,array:arr.length}
+    }
+    else{
+        return false
+    }
+}
+
+console.log(majorityElement([1,1,1,1,1,2,3,1,2,3]));
