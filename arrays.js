@@ -146,3 +146,35 @@ const majorityElement = (arr) =>{
 }
 
 console.log(majorityElement([1,1,1,1,1,2,3,1,2,3]));
+
+// sort 0,1,2 array using dutch sort algorithm 
+
+let sortSwap = (arr,i,j) =>{
+    let temp = arr[i];
+    arr[i]=arr[j]
+    arr[j]=temp
+}
+const sort012 = (arr) =>{
+    let low = 0;
+    let mid = 0;
+    let high = arr.length - 1
+
+    while(mid<=high){
+        if(arr[mid] === 0){
+            sortSwap(arr,low,mid);
+            low++
+            mid++
+        }
+        else if(arr[mid] === 1){
+            mid++
+        }
+        else{
+            sortSwap(arr,mid,high);
+            high--
+        }
+    }
+
+    return arr
+}
+
+console.log(sort012([1,2,1,1,0,0,2,1]));
