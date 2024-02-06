@@ -34,6 +34,6 @@ const reverseArray = (arr) =>{
 
 }
 
-let array=[1,2,3,4,3]
+let array=[1,2,3,4,5]
 
 console.log("Reversed Array is:",reverseArray(array))
