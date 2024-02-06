@@ -42,7 +42,7 @@ console.log("Reversed Array is:", reverseArray(array));
 const findElement = (arr, j) => {
   for (i = 0; i < arr.length; i++) {
     if (arr[i] == j) {
-      return {num:j,success: true, index:i };
+      return { num: j, success: true, index: i };
     }
   }
 
@@ -55,13 +55,58 @@ console.log(findElement(findArr, 32));
 
 // find a unique element in array
 
-const uniqueElement = (arr) =>{
+const uniqueElement = (arr) => {
+  let ans = 0;
+  for (let i = 0; i < arr.length; i++) {
+    // using XOR operator it return false if two elements are same and true if elements are different
+    ans = arr[i] ^ ans;
+  }
+  return ans;
+};
 
-    let ans = 0
-    for(let i = 0;i<arr.length;i++){
-        ans = arr[i] ^ ans;
+console.log(uniqueElement([1, 1, 2, 3, 3]));
+
+// rotate an array
+
+const reverse = (arr, start, end) => {
+  for (let i = start,j=end-1;i <end/2; i++,j--) {
+    let temp = arr[i]
+    arr[i] = arr[j]
+    arr[j] = temp
+  }
+};
+const rotateArray = (arr,num) => {
+    reverse(arr,0,arr.length)
+    reverse(arr,num,arr.length)
+    reverse(arr,0,num)
+    return arr
+};
+
+console.log(rotateArray([1, 2, 3, 4, 5], 2));
+
+
+// all pair whose sum is X
+
+let sumPairs = []
+const sumPair = (arr,num) =>{
+    let start = 0;
+    let end = arr.length - 1
+
+    while(start<end){
+        if(arr[start]+arr[end] === num){
+            sumPairs.push([arr[start],arr[end]])
+            start++
+            end--
+        }
+        else if(arr[start]+arr[end] < num){
+            start++
+        }
+        else{
+            end--
+        }
     }
-    return ans
+
+    return sumPairs
 }
 
-console.log(uniqueElement([1,1,2,3,3]));
+console.log(sumPair([1,2,3,4,5,6,7],8));
