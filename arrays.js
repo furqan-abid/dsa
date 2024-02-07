@@ -69,135 +69,166 @@ console.log(uniqueElement([1, 1, 2, 3, 3]));
 // rotate an array
 
 const reverse = (arr, start, end) => {
-  for (let i = start,j=end-1;i <end/2; i++,j--) {
-    let temp = arr[i]
-    arr[i] = arr[j]
-    arr[j] = temp
+  for (let i = start, j = end - 1; i < end / 2; i++, j--) {
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
   }
 };
-const rotateArray = (arr,num) => {
-    reverse(arr,0,arr.length)
-    reverse(arr,num,arr.length)
-    reverse(arr,0,num)
-    return arr
+const rotateArray = (arr, num) => {
+  reverse(arr, 0, arr.length);
+  reverse(arr, num, arr.length);
+  reverse(arr, 0, num);
+  return arr;
 };
 
 console.log(rotateArray([1, 2, 3, 4, 5], 2));
 
-
 // all pair whose sum is X
 
-let sumPairs = []
-const sumPair = (arr,num) =>{
-    let start = 0;
-    let end = arr.length - 1
+let sumPairs = [];
+const sumPair = (arr, num) => {
+  let start = 0;
+  let end = arr.length - 1;
 
-    while(start<end){
-        if(arr[start]+arr[end] === num){
-            sumPairs.push([arr[start],arr[end]])
-            start++
-            end--
-        }
-        else if(arr[start]+arr[end] < num){
-            start++
-        }
-        else{
-            end--
-        }
+  while (start < end) {
+    if (arr[start] + arr[end] === num) {
+      sumPairs.push([arr[start], arr[end]]);
+      start++;
+      end--;
+    } else if (arr[start] + arr[end] < num) {
+      start++;
+    } else {
+      end--;
     }
+  }
 
-    return sumPairs
-}
+  return sumPairs;
+};
 
-console.log(sumPair([1,2,3,4,5,6,7],8));
+console.log(sumPair([1, 2, 3, 4, 5, 6, 7], 8));
 
 // majority element in an array
 
-const majorityElement = (arr) =>{
-    let element = 0;
-    let count = 0
+const majorityElement = (arr) => {
+  let element = 0;
+  let count = 0;
 
-    for(let i = 0;i<arr.length;i++){
-        if(count===0){
-            element = arr[i]
-        }
-        if(arr[i]===element){
-            count++
-        }
-        else{
-            count--
-        }
+  for (let i = 0; i < arr.length; i++) {
+    if (count === 0) {
+      element = arr[i];
     }
-
-    count=0
-
-    for(let i = 0; i<arr.length;i++){
-        if(element===arr[i]){
-            count++
-        }
+    if (arr[i] === element) {
+      count++;
+    } else {
+      count--;
     }
+  }
 
-    if(count>Math.floor(arr.length/2)){
-        return {element,count,array:arr.length}
+  count = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (element === arr[i]) {
+      count++;
     }
-    else{
-        return false
+  }
+
+  if (count > Math.floor(arr.length / 2)) {
+    return { element, count, array: arr.length };
+  } else {
+    return false;
+  }
+};
+
+console.log(majorityElement([1, 1, 1, 1, 1, 2, 3, 1, 2, 3]));
+
+// sort 0,1,2 array using dutch sort algorithm
+
+let sortSwap = (arr, i, j) => {
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+};
+const sort012 = (arr) => {
+  let low = 0;
+  let mid = 0;
+  let high = arr.length - 1;
+
+  while (mid <= high) {
+    if (arr[mid] === 0) {
+      sortSwap(arr, low, mid);
+      low++;
+      mid++;
+    } else if (arr[mid] === 1) {
+      mid++;
+    } else {
+      sortSwap(arr, mid, high);
+      high--;
     }
-}
+  }
 
-console.log(majorityElement([1,1,1,1,1,2,3,1,2,3]));
+  return arr;
+};
 
-// sort 0,1,2 array using dutch sort algorithm 
-
-let sortSwap = (arr,i,j) =>{
-    let temp = arr[i];
-    arr[i]=arr[j]
-    arr[j]=temp
-}
-const sort012 = (arr) =>{
-    let low = 0;
-    let mid = 0;
-    let high = arr.length - 1
-
-    while(mid<=high){
-        if(arr[mid] === 0){
-            sortSwap(arr,low,mid);
-            low++
-            mid++
-        }
-        else if(arr[mid] === 1){
-            mid++
-        }
-        else{
-            sortSwap(arr,mid,high);
-            high--
-        }
-    }
-
-    return arr
-}
-
-console.log(sort012([1,2,1,1,0,0,2,1]));
-
+console.log(sort012([1, 2, 1, 1, 0, 0, 2, 1]));
 
 // duplicates in array
 
-let duplicatesAns = []
+let duplicatesAns = [];
 
-const duplicatesInArray = (arr) =>{
-  let n = arr.length
+const duplicatesInArray = (arr) => {
+  let n = arr.length;
 
-  for(let i = 0;i<n;i++){
-    let index = arr[i] % n
+  for (let i = 0; i < n; i++) {
+    let index = arr[i] % n;
     console.log(index);
-    arr[index] += n
+    arr[index] += n;
   }
-  for(let i = 0;i<n;i++){
-    if((arr[i]/n)>=2){
-      duplicatesAns.push(i)
+  for (let i = 0; i < n; i++) {
+    if (arr[i] / n >= 2) {
+      duplicatesAns.push(i);
     }
   }
-  return duplicatesAns
-}
+  return duplicatesAns;
+};
 
-console.log("duplicates",duplicatesInArray([1,1,2,3,4,1]));
+console.log("duplicates", duplicatesInArray([1, 1, 2, 3, 4, 1]));
+
+// make zeros in 2d array
+
+const makeZeros = (arr) => {
+  let n = arr.length;
+  let m = arr[0].length
+  let temp = structuredClone(arr)
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      if (temp[i][j] === 0) {
+        if (i + 1 < n) {
+          arr[i][j] += temp[i + 1][j];
+          arr[i + 1][j] = 0;
+        }
+        if (i - 1 >= 0) {
+          arr[i][j] += temp[i - 1][j];
+          arr[i - 1][j] = 0;
+        }
+        if (j + 1 < m) {
+          arr[i][j] += temp[i][j + 1];
+          arr[i][j + 1] = 0;
+        }
+        if (j - 1 >= 0) {
+          arr[i][j] += temp[i][j - 1];
+          arr[i][j - 1] = 0;
+        }
+      }
+    }
+  }
+  return arr;
+};
+
+const makeZerosArr = [
+  [1, 2, 3, 4],
+  [5, 6, 0, 7],
+  [8, 9, 4, 6],
+  [8, 4, 5, 2],
+];
+console.log(makeZeros(makeZerosArr));
