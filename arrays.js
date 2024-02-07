@@ -257,3 +257,80 @@ const makeTransposedArr= [
   [7,8,9]
 ]
 console.log(transpose(makeTransposedArr));
+
+// rotate matrix 90 degree
+
+const RotateSwap = (arr,i,j) =>{
+  const temp = arr[i][j]
+  arr[i][j] = arr[j][i]
+  arr[j][i] = temp
+}
+const Rotate = (arr) =>{
+
+  let n = arr.length
+  for(let i = 0;i<n;i++){
+    for(let j = 0 ; j<i;j++){
+        RotateSwap(arr,i,j)
+    }
+  }
+
+  for(let i = 0;i< n/2;i++){
+    for(let j = 0;j<n;j++){
+      const temp = arr[i][j];
+      arr[i][j] = arr[n-1-i][j];
+      arr[n-1-i][j] = temp;
+    }
+  }
+  return arr
+}
+
+const makeRotatedArr= [
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+]
+console.log(Rotate(makeRotatedArr));
+
+// traversing a matrix
+
+const traverseAns = []
+const traverseMatrix = (arr) =>{
+
+  let top = 0;
+  let left = 0;
+  let right = arr[0].length - 1;
+  let bottom = arr.length - 1;
+
+  while(top<=bottom && left <=right){
+    for(let i = left;i<=right;i++){
+      traverseAns.push(arr[top][i])
+    }
+    top++
+    for(let i = top;i<=bottom;i++){
+      traverseAns.push(arr[i][right])
+    }
+    right--
+    if(top<=bottom){
+      for(let i = right;i>=left;i--){
+        traverseAns.push(arr[bottom][i])
+      }
+      bottom--
+    }
+    if(left<=right){
+      for(let i = bottom;i>=top;i--){
+        traverseAns.push(arr[i][left])
+      }
+      left++
+    }
+  }
+  return traverseAns
+}
+
+const traverseArr = [
+  [1,2,3,4],
+  [5,6,7,8],
+  [9,10,11,12],
+  [13,14,15,16]
+]
+
+console.log(traverseMatrix(traverseArr));
