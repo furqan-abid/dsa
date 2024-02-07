@@ -178,3 +178,26 @@ const sort012 = (arr) =>{
 }
 
 console.log(sort012([1,2,1,1,0,0,2,1]));
+
+
+// duplicates in array
+
+let duplicatesAns = []
+
+const duplicatesInArray = (arr) =>{
+  let n = arr.length
+
+  for(let i = 0;i<n;i++){
+    let index = arr[i] % n
+    console.log(index);
+    arr[index] += n
+  }
+  for(let i = 0;i<n;i++){
+    if((arr[i]/n)>=2){
+      duplicatesAns.push(i)
+    }
+  }
+  return duplicatesAns
+}
+
+console.log("duplicates",duplicatesInArray([1,1,2,3,4,1]));
