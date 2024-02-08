@@ -364,3 +364,41 @@ const booleanArr = [
 ]
 
 console.log(booleanMatrix(booleanArr))
+
+// traversing boolean matrix optimised way
+
+const booleanMatrix2nd = (arr) =>{
+
+  let row = arr.length;
+  let col = arr[0].length;
+
+  let tempRow = []
+  let tempCol = []
+
+  for(let i = 0;i<row;i++){
+    for(let j = 0;j<col;j++){
+      if(arr[i][j]===1){
+        tempRow[i]=1
+        tempCol[j]=1
+    }
+  }
+}
+
+  for(let i = 0;i<row;i++){
+    for(let j = 0;j<col;j++){
+      if(tempRow[i]===1 || tempCol[j]===1){
+        arr[i][j]=1
+    }
+  }
+}
+
+return arr
+
+}
+
+const booleanArr2nd = [
+  [1,0],
+  [0,0]
+]
+
+console.log(booleanMatrix2nd(booleanArr2nd))
