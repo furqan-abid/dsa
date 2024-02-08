@@ -334,3 +334,33 @@ const traverseArr = [
 ]
 
 console.log(traverseMatrix(traverseArr));
+
+// traversing boolean matrixes non optimized solution with complexity of O(n ^ 3)
+
+const booleanMatrix = (arr) =>{
+
+  let row = arr.length;
+  let col = arr[0].length;
+  let temp = structuredClone(arr)
+
+  for(let i = 0;i<row;i++){
+    for(let j = 0;j<col;j++){
+      if(arr[i][j]===1){
+        for(let k = 0;k<row;k++){
+          temp[i][k] = 1
+        }
+        for(let k = 0;k<col;k++){
+          temp[k][j] = 1
+        }
+      }
+    }
+  }
+  return temp
+}
+
+const booleanArr = [
+  [1,0],
+  [0,0]
+]
+
+console.log(booleanMatrix(booleanArr))
