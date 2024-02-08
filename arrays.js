@@ -402,3 +402,30 @@ const booleanArr2nd = [
 ]
 
 console.log(booleanMatrix2nd(booleanArr2nd))
+
+// largest sum contigious sub array
+
+const sumCompare = (sum,maxSum) =>{
+  if(sum>maxSum){
+    maxSum=sum
+  }
+  return maxSum
+}
+const  maxSumCountArr = (arr) => {
+
+  let sum = 0;
+  let maxSum = 0
+
+  for(let i = 0;i<arr.length;i++){
+    sum+=arr[i]
+    maxSum = sumCompare(sum,maxSum)
+    if(sum<=0){
+      sum = 0
+    }
+  }
+  return maxSum
+}
+
+const maxArr = [-1,-2,4,-1,-2,1,5,-3]
+
+console.log(maxSumCountArr(maxArr))
