@@ -28,7 +28,7 @@ list = push(list,1)
 list = push(list,2)
 list = push(list,3)
 
-// printList(list)
+printList(list)
 
 
 // delete node from linked list
@@ -57,6 +57,20 @@ while(node){
 return node
 }
 
-let deleted = deleteNode(list,3)
+// let deleted = deleteNode(list,3)
 
-printList(deleted)
+// printList(deleted)
+
+const findingMiddleNode = (head) =>{
+  let slow = head
+  let fast = head
+
+  while(fast && fast.next){
+    slow = slow.next
+    fast = fast.next.next
+    return slow.number
+  }
+
+}
+
+console.log(findingMiddleNode(list));
