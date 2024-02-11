@@ -74,3 +74,49 @@ const findingMiddleNode = (head) =>{
 }
 
 console.log(findingMiddleNode(list));
+
+// reversing a linkedlist
+
+const reverseLinkedList = (head) =>{
+
+  if(head === null || head.next === null) {
+    return head
+  }
+
+  let curr = head
+  let next = null
+  let prev = null
+
+  while(curr){
+    next = curr.next
+    curr.next = prev
+    prev = curr
+    curr = next
+  }
+
+  return prev
+
+}
+
+// let reversedList = reverseLinkedList(list)
+
+// printList(reversedList)
+
+// reversing list with recursion
+
+const reverseWithRecursion = (head) =>{
+
+  if(head===null || head.next === null)
+  return head
+
+  let rest=reverseWithRecursion(head.next)
+
+  head.next.next=head
+  head.next = null
+
+  return rest
+}
+
+let reversedList = reverseWithRecursion(list)
+
+printList(reversedList)
