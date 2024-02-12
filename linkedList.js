@@ -128,7 +128,9 @@ const removingDuplicates = (head) =>{
   if(head ===null || head.next === null){
     return head
   }
+  
 
+  // we have to declare it as if we use head with curr it will change positoin of head and we will just get 0 than
   let curr = head
 
   while(curr.next){
@@ -143,7 +145,28 @@ const removingDuplicates = (head) =>{
   return head
 }
 
-printList(removingDuplicates(list))
+// printList(removingDuplicates(list))
 
 
-removingDuplicates 
+// remove duplicates from sorted linked list through recursive approach
+
+const removingDuplicatesRecursive = (head) =>{
+  if(head === null|| head.next === null){
+    return head
+  }
+
+  if(head.number === head.next.number){
+    let next_next = head.next.next
+    head.next = next_next.next
+    head = removingDuplicatesRecursive(head)
+  }
+  else{
+    head.next = removingDuplicates(head.next)
+  }
+  console.log(head);
+
+  // it changes the head with return every time from 0 to 1 to 2 to 3
+  return head
+}
+
+printList(removingDuplicatesRecursive(list))
