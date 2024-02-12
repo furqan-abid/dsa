@@ -196,4 +196,25 @@ const findingNthNode = (head,n) =>{
   
 }
 
-console.log(findingNthNode(list,n=3))
+console.log(findingNthNode(list,3))
+
+// finding nth node from end of linked list through two pointers approach
+
+const findingNthNodePointers = (head,n)=>{
+  
+  let first = head
+  let second = head
+
+  for(let i =1;i<n;i++){
+    second = second.next
+  }
+
+  while(second.next){
+    first = first.next
+    second = second.next
+  }
+
+  return first.number
+}
+
+console.log(findingNthNodePointers(list,3));
