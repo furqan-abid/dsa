@@ -170,3 +170,30 @@ const removingDuplicatesRecursive = (head) =>{
 }
 
 printList(removingDuplicatesRecursive(list))
+
+// finding nth node from end of linked list through iterative approach
+
+const findingNthNode = (head,n) =>{
+  let count = 1
+  var curr = head
+
+  while(curr.next){
+    count++
+    curr=curr.next
+  }
+
+  if(n>count){
+    return -1
+  }
+  let position = count-n
+
+  curr = head
+  for(let i = 0 ;i<position;i++){
+    curr=curr.next
+  }
+
+  return curr.number
+  
+}
+
+console.log(findingNthNode(list,n=3))
