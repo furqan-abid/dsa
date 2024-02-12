@@ -25,6 +25,7 @@ const printList = (head) => {
 let list = new Node(0)
 list.next = null
 list = push(list,1)
+list = push(list,1)
 list = push(list,2)
 list = push(list,3)
 
@@ -117,6 +118,32 @@ const reverseWithRecursion = (head) =>{
   return rest
 }
 
-let reversedList = reverseWithRecursion(list)
+// let reversedList = reverseWithRecursion(list)
 
-printList(reversedList)
+// printList(reversedList)
+
+// removing duplicates from sorted link list through iterative approach
+
+const removingDuplicates = (head) =>{
+  if(head ===null || head.next === null){
+    return head
+  }
+
+  let curr = head
+
+  while(curr.next){
+    if(curr.number == curr.next.number){
+      let next_next = curr.next.next
+      curr.next = next_next
+    }
+    else{
+      curr = curr.next
+    }
+  }
+  return head
+}
+
+printList(removingDuplicates(list))
+
+
+removingDuplicates 
