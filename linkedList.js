@@ -218,3 +218,66 @@ const findingNthNodePointers = (head,n)=>{
 }
 
 console.log(findingNthNodePointers(list,3));
+
+
+// add two numbers represented by linked list
+
+const numbersReverse = (head) =>{
+
+  if(!head || !head.next) return head;
+
+  let rest = numbersReverse(head.next)
+  head.next.next = head
+  head.next = null
+  return rest
+}
+
+const addTwoNumbers = (first, second) =>{
+
+  if(!first && !second )return null;
+
+  first = numbersReverse(first)
+  second = numbersReverse(second)
+
+  let temp = null
+  let tail = null
+  let head = null
+  let carry = 0
+
+  while(first!=null || second !=null){
+    sum = carry + (first?first.number:0) + (second?second.number:0)
+    if(sum>=10){
+      carry = 1
+    }
+    sum = sum%10
+
+    temp = new Node(sum)
+
+    if(head===null){
+      head = temp
+    }
+    else{
+      tail.next = temp
+    }
+
+    tail = temp
+
+    if(first)  first=first.next
+    if(second) second = second.next
+  }
+
+  head = numbersReverse(head)
+  console.log(head);
+  return head
+}
+
+let first = new Node(0)
+first.next = null
+first = push(first,9)
+first = push(first,1)
+
+let second = new Node(5)
+second.next = null
+second = push(second,2)
+
+printList(addTwoNumbers(first,second))
