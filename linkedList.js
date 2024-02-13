@@ -281,3 +281,29 @@ second.next = null
 second = push(second,2)
 
 printList(addTwoNumbers(first,second))
+
+// cycle detection by floyd cycle
+
+const cycleDetection = (head) =>{
+  let first = head
+  let second = head
+
+  while(second || second.next){
+    first  = first.next
+    second = second.next.next
+    if(first===second){
+      return true
+    }
+  }
+  return false
+}
+
+let cycle = new Node(5)
+let cycle1 = new Node(3)
+let cycle2 = new Node(2)
+
+cycle.next = cycle1
+cycle1.next = cycle2
+cycle2.next = cycle
+
+console.log(cycleDetection(cycle))
