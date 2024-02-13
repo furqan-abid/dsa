@@ -307,3 +307,35 @@ cycle1.next = cycle2
 cycle2.next = cycle
 
 console.log(cycleDetection(cycle))
+
+// check if linked list is palindrom
+
+const checkPalindrom = (head) =>{
+  let slow = head
+  let fast = head
+
+  while(fast && fast.next){
+    slow = slow.next
+    fast = fast.next.next
+  }
+
+  slow = numbersReverse(slow)
+
+  let temp = head
+  while(slow){
+    if(slow.number != temp.number){
+      console.log("first")
+      return false
+    }
+    slow = slow.next
+    temp= temp.next
+  }
+  return true
+}
+
+let node = new Node(1)
+node.next = null
+node = push(node,2)
+node = push(node,1)
+
+console.log(checkPalindrom(node));
