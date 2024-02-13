@@ -339,3 +339,29 @@ node = push(node,2)
 node = push(node,1)
 
 console.log(checkPalindrom(node));
+
+// delete node with out head pointer 
+
+let node0 = new Node(5)
+let node1 = new Node(3)
+let node2 = new Node(2)
+
+node0.next = node1
+node1.next = node2
+node2.next = null
+
+const deleteNodeWithoutHead = (node) =>{
+  if(node.next == null){
+    return
+  }
+  let prev = node
+  let curr = node.next
+  let next = node.next.next
+
+  prev.number = curr.number
+  prev.next = next
+
+}
+
+deleteNodeWithoutHead(node1)
+console.log(node0);
