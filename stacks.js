@@ -86,3 +86,38 @@ linkedList.display()
 linkedList.pop()
 
 linkedList.display()
+
+// check valide pranthesis
+
+const validPranthesis = (arr) =>{
+
+    let stack = []
+
+    if(arr.length === 0){
+        console.log("array is empty");
+        return false
+    }
+
+    for(let i = 0 ; i< arr.length; i++){
+        if(arr[i]==='(' || arr[i]==='{' || arr[i]==='['){
+
+            stack.push(arr[i])
+        }
+        else{
+            if(stack.length===0){
+                console.log("array doesnt have pranthesis")
+                return false
+            }
+                if(stack[stack.length-1]==='(' && arr[i]!==')')return false
+                if(stack[stack.length-1]==='{' && arr[i]!=='}')return false
+                if(stack[stack.length-1]==='[' && arr[i]!==']')return false
+
+                stack.pop()
+            
+        }
+    }
+    return true
+
+}
+
+console.log(validPranthesis(['{','(','[',']',')','}']), validPranthesis(['{','(','[',']',')',')']));
