@@ -148,3 +148,30 @@ const smallestNumber = (arr) =>{
 }
 
 console.log(smallestNumber([1,6,2]))
+
+// solving greatest number on right side
+
+const greatestNumber = (arr) =>{
+    let ans = new Array(arr.length)
+
+    let stack = []
+
+    for(let i = arr.length-1;i>=0;i--){
+        while(stack.length!=0 && stack[stack.length-1]<=arr[i]){
+            stack.pop()
+        }
+
+        if(stack.length===0){
+            ans[i]=-1
+        }
+        else{
+            ans[i]=stack[stack.length-1]
+        }
+
+        stack.push(arr[i])
+    }
+    return ans
+}
+
+console.log(greatestNumber([1,3,2,4]))
+
