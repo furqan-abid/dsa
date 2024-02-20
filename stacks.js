@@ -175,3 +175,31 @@ const greatestNumber = (arr) =>{
 
 console.log(greatestNumber([1,3,2,4]))
 
+// stock span problem , smallest consective number on left side
+
+const stockSpan = (arr) =>{
+
+    let ans = []
+    let stack = []
+
+    for (let index = 0; index < arr.length; index++) {
+        while(stack.length>0 && arr[stack[stack.length-1]]<=arr[index]){
+            stack.pop()
+        }
+
+        if(stack.length===0) {
+            ans.push(index+1)
+        }
+        else{
+            ans.push(index-stack[stack.length-1])
+        }
+
+        stack.push(index)
+        
+    }
+
+    return ans
+}
+
+console.log(stockSpan([1,2,3,5,3,4]));
+
