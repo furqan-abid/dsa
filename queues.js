@@ -8,14 +8,14 @@ class Queue {
     enqueue(item){
         this.item[this.backIndex] = item
         this.backIndex += 1
-        return item + "inserted"
+        return item
     }
 
     dequeue(){
         let item = this.item[this.frontIndex]
         delete this.item[this.frontIndex]
         this.frontIndex++
-        return item + "deleted"
+        return item
     }
 
     listItems(){
@@ -27,16 +27,56 @@ class Queue {
 }
 
 let queue = new Queue
-console.log(queue.enqueue(1));
-console.log(queue.enqueue(2));
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+queue.enqueue(3)
+queue.enqueue(3)
+queue.enqueue(3)
+queue.enqueue(3)
+queue.enqueue(3)
+
 console.log(queue.enqueue(3));
 
-console.log(queue.dequeue())
-console.log(queue.dequeue())
 
-console.log(queue.enqueue(3));
+// reverse k elements in the queue
 
+class Stack {
+    constructor(){
+        this.items = []
+    }
 
-console.log(queue.listItems());
+    push(item){
+        let temp = this.items.push(item)
+        return temp
+    }
+    pop(){
+        let temp = this.items.pop()
+        return temp
+    }
+}
 
-console.log(queue.size());
+const removeKthElement = (k) =>{
+    console.log(queue.listItems());
+
+    let n = queue.size()
+    let stack = new Stack
+
+    for(let i = 0; i<k;i++){
+        let temp = queue.dequeue()
+        stack.push(temp)
+    }
+
+    for(let i = 0;i<k;i++){
+        let temp = stack.pop()
+        queue.enqueue(temp)
+    }
+
+    for(let i = 0;i<n-k;i++){
+        let temp = queue.dequeue()
+        queue.enqueue(temp)
+    }
+
+    console.log(stack,queue)
+}
+removeKthElement(3)
