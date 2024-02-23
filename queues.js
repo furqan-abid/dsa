@@ -150,3 +150,25 @@ const findKthNumber = (k) =>{
 }
 
 console.log("kth number",findKthNumber(5))
+
+// finding the kth palindrome of even length using 1 and 2
+
+const findKthPalindrome = (k) =>{
+    let queue = new Queue
+    queue.enqueue("11")
+    queue.enqueue("22")
+    let ans = null
+
+    for(let i = 1 ; i<k;i++){
+        let temp = queue.dequeue()
+        ans = temp
+        let first = temp.substring(0,temp.length/2)
+        let second = temp.substring(temp.length/2,temp.length)
+
+        queue.enqueue(first+"11"+second)
+        queue.enqueue(first+"22"+second)
+    }
+    return ans
+}
+
+console.log(findKthPalindrome(5))
