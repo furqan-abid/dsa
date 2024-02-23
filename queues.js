@@ -130,4 +130,23 @@ queueStack.enqueue(4)
 console.log("this is item",queueStack.items)
 queueStack.dequeue()
 
-console.log(queueStack.items)
+// console.log(queueStack.items)
+
+// find kth number using 1 and 2
+
+const findKthNumber = (k) =>{
+    let queue = new Queue
+    queue.enqueue("1")
+    queue.enqueue("2")
+
+    let ans = 0
+    for(let i = 1; i <= k; i++){
+        let temp = queue.dequeue()
+        ans = temp
+        queue.enqueue(temp+"1")
+        queue.enqueue(temp+"1")
+    }
+    return ans
+}
+
+console.log("kth number",findKthNumber(5))
